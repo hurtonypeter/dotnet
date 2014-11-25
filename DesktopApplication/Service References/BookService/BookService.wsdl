@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BookService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetHttpBinding_IBookService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBookService_GetAllBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetAllBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetAllPaperBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPaperBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetAllPaperBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPaperBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetAllEBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetAllEBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetBookById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookById" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_GetBookById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_SearchBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_SearchBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_SaveBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_SaveBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveBookResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBookService">
+    <wsdl:operation name="GetAllBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/GetAllBook" message="tns:IBookService_GetAllBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/GetAllBookResponse" message="tns:IBookService_GetAllBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPaperBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/GetAllPaperBook" message="tns:IBookService_GetAllPaperBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/GetAllPaperBookResponse" message="tns:IBookService_GetAllPaperBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/GetAllEBook" message="tns:IBookService_GetAllEBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/GetAllEBookResponse" message="tns:IBookService_GetAllEBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/GetBookById" message="tns:IBookService_GetBookById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/GetBookByIdResponse" message="tns:IBookService_GetBookById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/SearchBook" message="tns:IBookService_SearchBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/SearchBookResponse" message="tns:IBookService_SearchBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/SaveBook" message="tns:IBookService_SaveBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/SaveBookResponse" message="tns:IBookService_SaveBook_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetHttpBinding_IBookService" type="tns:IBookService">
+    <wsp:PolicyReference URI="#NetHttpBinding_IBookService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/GetAllBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPaperBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/GetAllPaperBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/GetAllEBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookById">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/GetBookById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/SearchBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/SaveBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BookService">
+    <wsdl:port name="NetHttpBinding_IBookService" binding="tns:NetHttpBinding_IBookService">
+      <soap12:address location="http://localhost:8733/Design_Time_Addresses/BookService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:8733/Design_Time_Addresses/BookService</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

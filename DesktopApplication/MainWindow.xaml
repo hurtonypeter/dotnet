@@ -1,0 +1,26 @@
+﻿<Window x:Class="DesktopApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Könyvtár v1.0" Height="350" Width="525">
+    <Grid>
+        <DockPanel LastChildFill="False">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Menu Height="25" VerticalAlignment="Center">
+                    <MenuItem Height="25" Header="Fájl"></MenuItem>
+                    <MenuItem Header="Szerkesztés">
+                        <MenuItem Header="Keresés...">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource SearchIcon}"></Image>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Jelentések"></MenuItem>
+                </Menu>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                <Label>Könyvek:</Label>
+                <DataGrid Name="bookDataGrid"></DataGrid>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
