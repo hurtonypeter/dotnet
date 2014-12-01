@@ -15,7 +15,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Book", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Book", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopApplication.BookService.PaperBook))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopApplication.BookService.EBook))]
@@ -142,7 +142,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PaperBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PaperBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class PaperBook : DesktopApplication.BookService.Book {
         
@@ -165,7 +165,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class EBook : DesktopApplication.BookService.Book {
         
@@ -204,7 +204,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Category", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Category", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Category : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -313,7 +313,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Writer", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Writer", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Writer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -406,7 +406,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BookItem", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BookItem", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class BookItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -531,7 +531,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BookStateEntry", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BookStateEntry", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class BookStateEntry : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -658,7 +658,7 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Member", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Member", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Member : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         

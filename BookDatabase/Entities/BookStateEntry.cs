@@ -18,7 +18,7 @@ namespace BookDatabase.Entities
         Back
     }
 
-    [DataContract]
+    [DataContract(IsReference = true)]
     [KnownType(typeof(BookStateEntryType))]
     [KnownType(typeof(Member))]
     public class BookStateEntry

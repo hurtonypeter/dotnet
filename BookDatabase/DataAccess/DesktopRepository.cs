@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,9 +62,10 @@ namespace BookDatabase.DataAccess
             var key = searchKey.ToLower();
             using (var db = new BookContext())
             {
-                return (from b in db.Books
-                        where b.ISBN.ToLower().Contains(key) || b.Title.ToLower().Contains(key) || b.OriginalTitle.ToLower().Contains(key)
-                        select b).ToList();
+                var result = (from b in db.Books.Include(p => p.Category).Include(p => p.Writer)
+                              where b.ISBN.ToLower().Contains(key) || b.Title.ToLower().Contains(key) || b.OriginalTitle.ToLower().Contains(key)
+                              select b).ToList();
+                return result;
             }
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookDatabase.Entities
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     [KnownType(typeof(BookItem))]
     [KnownType(typeof(BookStateEntry))]
     [KnownType(typeof(ICollection<BookStateEntry>))]

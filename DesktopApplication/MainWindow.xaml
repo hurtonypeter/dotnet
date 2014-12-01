@@ -21,7 +21,7 @@
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
             <Label DockPanel.Dock="Left" Padding="8">Könyvek:</Label>
 
-            <TextBox DockPanel.Dock="Right" Padding="4" Margin="5" Width="150" Text="{Binding SearchString, Mode=TwoWay}">
+            <TextBox DockPanel.Dock="Right" Padding="4" Margin="5" Width="150" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="KeyDown">
                         <cmd:EventToCommand Command="{Binding SearchStartCommand}" PassEventArgsToCommand="True" />

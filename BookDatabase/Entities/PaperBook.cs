@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace BookDatabase.Entities
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     [KnownType(typeof(Book))]
     [KnownType(typeof(Category))]
     [KnownType(typeof(Writer))]
