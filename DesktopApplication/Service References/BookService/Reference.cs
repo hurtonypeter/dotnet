@@ -11,6 +11,7 @@
 namespace DesktopApplication.BookService {
     using System.Runtime.Serialization;
     using System;
+    using GalaSoft.MvvmLight.Ioc;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -857,7 +858,8 @@ namespace DesktopApplication.BookService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class BookServiceClient : System.ServiceModel.ClientBase<DesktopApplication.BookService.IBookService>, DesktopApplication.BookService.IBookService {
-        
+
+        [PreferredConstructor]
         public BookServiceClient() {
         }
         

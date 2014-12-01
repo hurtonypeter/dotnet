@@ -22,19 +22,17 @@ namespace DesktopApplication.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainWindowModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
-        private BookServiceClient serviceClient = new BookServiceClient();
+        private IBookService bookService;
 
-        private ObservableCollection<Book> _books = new ObservableCollection<Book>();
-
+        private ObservableCollection<Book> books = new ObservableCollection<Book>();
         public ObservableCollection<Book> Books
         {
-            get { return _books; }
+            get { return books; }
         }
 
         private string searchString;
-
         public string SearchString
         {
             get { return searchString; }
@@ -42,7 +40,6 @@ namespace DesktopApplication.ViewModel
         }
 
         private RelayCommand<KeyEventArgs> searchStartCommand;
-
         public RelayCommand<KeyEventArgs> SearchStartCommand
         {
             get
@@ -51,9 +48,9 @@ namespace DesktopApplication.ViewModel
                 {
                     searchStartCommand = new RelayCommand<KeyEventArgs>(e =>
                     {
-                        _books.Clear();
-                        var result = serviceClient.SearchBook(SearchString);
-                        result.ForEach(b => _books.Add(b));
+                        books.Clear();
+                        var result = bookService.SearchBook(SearchString);
+                        result.ForEach(b => books.Add(b));
                     }, e => {
                         if (e.Key == Key.Enter)
                             return true;
@@ -64,28 +61,32 @@ namespace DesktopApplication.ViewModel
                 return searchStartCommand;
             }
         }
+
+        private Book selectedBook;
+        public Book SelectedBook
+        {
+            get { return selectedBook; }
+            set 
+            {
+                selectedBook = value;
+                RaisePropertyChanged();
+            }
+        }
         
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainWindowModel()
+        public MainWindowViewModel(IBookService _bookService)
         {
-            if (IsInDesignMode)
-            {
-                // Code runs in Blend --> create design time data.
-            }
-            else
-            {
-                // Code runs "for real"
-            }
-            _books.Add(
-                new Book { ISBN = "123213213", Title = "az", OriginalTitle = "that", Writer = new List<Writer> {
-                    new Writer { FirstName = "J. K.", LastName = "Rowling" },
-                    new Writer { FirstName = "J. J.", LastName = "Abrams" }
-                }
-            });
-            searchString = "harry";
+            bookService = _bookService;
+            ////if (IsInDesignMode)
+            ////{
+            ////    // Code runs in Blend --> create design time data.
+            ////}
+            ////else
+            ////{
+            ////    // Code runs "for real"
+            ////}
         }
-
     }
 }

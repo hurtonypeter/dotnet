@@ -4,9 +4,19 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
-        Title="Könyvtár v1.0" Height="350" Width="525">
-    <DockPanel LastChildFill="False">
-        <Menu DockPanel.Dock="Top" Height="25" VerticalAlignment="Center">
+        xmlns:views="clr-namespace:DesktopApplication.Views"
+        Title="Könyvtár v1.0" Height="451.6" Width="859.4">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <Menu Height="25" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <MenuItem Height="25" Header="Fájl"></MenuItem>
             <MenuItem Header="Szerkesztés">
                 <MenuItem Header="Keresés...">
@@ -18,27 +28,30 @@
             <MenuItem Header="Jelentések"></MenuItem>
         </Menu>
         
-        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-            <Label DockPanel.Dock="Left" Padding="8">Könyvek:</Label>
+        <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1">
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                <Label DockPanel.Dock="Left" Padding="8">Könyvek:</Label>
+                <TextBox DockPanel.Dock="Right" Padding="4" Margin="5" Width="150" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyDown">
+                            <cmd:EventToCommand Command="{Binding SearchStartCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <Label DockPanel.Dock="Right" Padding="8">Keresés:</Label>
+            </DockPanel>
 
-            <TextBox DockPanel.Dock="Right" Padding="4" Margin="5" Width="150" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="KeyDown">
-                        <cmd:EventToCommand Command="{Binding SearchStartCommand}" PassEventArgsToCommand="True" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
-            <Label DockPanel.Dock="Right" Padding="8">Keresés:</Label>
+            <DataGrid DockPanel.Dock="Top" Margin="5" ItemsSource="{Binding Books}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedBook}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Írók" Binding="{Binding Writer, Converter={StaticResource WriterListToStringConverter}}" />
+                    <DataGridTextColumn Header="Cím" Binding="{Binding Title}" />
+                    <DataGridTextColumn Header="Eredeti cím" Binding="{Binding OriginalTitle}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </DockPanel>
-
-        <DataGrid DockPanel.Dock="Top" Margin="5" ItemsSource="{Binding Books}" IsReadOnly="True" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" />
-                <DataGridTextColumn Header="Írók" Binding="{Binding Writer, Converter={StaticResource WriterListToStringConverter}}" />
-                <DataGridTextColumn Header="Cím" Binding="{Binding Title}" />
-                <DataGridTextColumn Header="Eredeti cím" Binding="{Binding OriginalTitle}" />
-                <DataGridTextColumn Header="Kategória" Binding="{Binding Category, Converter={StaticResource CategoryListToStringConverter}}" Width="*" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </DockPanel>
+        
+        <Grid Grid.Column="1" Grid.Row="1">
+            <views:BookView></views:BookView>
+        </Grid>
+    </Grid>
 </Window>

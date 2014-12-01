@@ -12,6 +12,7 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using DesktopApplication.BookService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -42,17 +43,28 @@ namespace DesktopApplication.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainWindowModel>();
+            SimpleIoc.Default.Register<IBookService, BookServiceClient>();
+
+            SimpleIoc.Default.Register<MainWindowViewModel>();
+            SimpleIoc.Default.Register<BookViewModel>();
         }
 
-        public MainWindowModel Main
+        public MainWindowViewModel Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainWindowModel>();
+                return ServiceLocator.Current.GetInstance<MainWindowViewModel>();
             }
         }
-        
+
+        public BookViewModel BookView
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<BookViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
