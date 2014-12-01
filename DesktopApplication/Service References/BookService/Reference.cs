@@ -25,7 +25,7 @@ namespace DesktopApplication.BookService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.Category[] CategoryField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.Category> CategoryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ISBNField;
@@ -40,7 +40,7 @@ namespace DesktopApplication.BookService {
         private string TitleField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.Writer[] WriterField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.Writer> WriterField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -53,7 +53,7 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.Category[] Category {
+        public System.Collections.Generic.List<DesktopApplication.BookService.Category> Category {
             get {
                 return this.CategoryField;
             }
@@ -118,7 +118,7 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.Writer[] Writer {
+        public System.Collections.Generic.List<DesktopApplication.BookService.Writer> Writer {
             get {
                 return this.WriterField;
             }
@@ -147,10 +147,10 @@ namespace DesktopApplication.BookService {
     public partial class PaperBook : DesktopApplication.BookService.Book {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.BookItem[] CopiesField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.BookItem> CopiesField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.BookItem[] Copies {
+        public System.Collections.Generic.List<DesktopApplication.BookService.BookItem> Copies {
             get {
                 return this.CopiesField;
             }
@@ -212,10 +212,10 @@ namespace DesktopApplication.BookService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.Book[] BooksField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.Book> BooksField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.Category[] ChildrenField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.Category> ChildrenField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -237,7 +237,7 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.Book[] Books {
+        public System.Collections.Generic.List<DesktopApplication.BookService.Book> Books {
             get {
                 return this.BooksField;
             }
@@ -250,7 +250,7 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.Category[] Children {
+        public System.Collections.Generic.List<DesktopApplication.BookService.Category> Children {
             get {
                 return this.ChildrenField;
             }
@@ -321,7 +321,7 @@ namespace DesktopApplication.BookService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.Book[] BooksField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.Book> BooksField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FirstNameField;
@@ -343,7 +343,7 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.Book[] Books {
+        public System.Collections.Generic.List<DesktopApplication.BookService.Book> Books {
             get {
                 return this.BooksField;
             }
@@ -420,7 +420,7 @@ namespace DesktopApplication.BookService {
         private DesktopApplication.BookService.PaperBook BookDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.BookStateEntry[] BookStateEntriesField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.BookStateEntry> BookStateEntriesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime BoughtField;
@@ -468,7 +468,7 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.BookStateEntry[] BookStateEntries {
+        public System.Collections.Generic.List<DesktopApplication.BookService.BookStateEntry> BookStateEntries {
             get {
                 return this.BookStateEntriesField;
             }
@@ -672,7 +672,7 @@ namespace DesktopApplication.BookService {
         private string BarcodeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private DesktopApplication.BookService.BookStateEntry[] BookStatesField;
+        private System.Collections.Generic.List<DesktopApplication.BookService.BookStateEntry> BookStatesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -723,7 +723,7 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DesktopApplication.BookService.BookStateEntry[] BookStates {
+        public System.Collections.Generic.List<DesktopApplication.BookService.BookStateEntry> BookStates {
             get {
                 return this.BookStatesField;
             }
@@ -814,22 +814,22 @@ namespace DesktopApplication.BookService {
     public interface IBookService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllBook", ReplyAction="http://tempuri.org/IBookService/GetAllBookResponse")]
-        DesktopApplication.BookService.Book[] GetAllBook();
+        System.Collections.Generic.List<DesktopApplication.BookService.Book> GetAllBook();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllBook", ReplyAction="http://tempuri.org/IBookService/GetAllBookResponse")]
-        System.Threading.Tasks.Task<DesktopApplication.BookService.Book[]> GetAllBookAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Book>> GetAllBookAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllPaperBook", ReplyAction="http://tempuri.org/IBookService/GetAllPaperBookResponse")]
-        DesktopApplication.BookService.PaperBook[] GetAllPaperBook();
+        System.Collections.Generic.List<DesktopApplication.BookService.PaperBook> GetAllPaperBook();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllPaperBook", ReplyAction="http://tempuri.org/IBookService/GetAllPaperBookResponse")]
-        System.Threading.Tasks.Task<DesktopApplication.BookService.PaperBook[]> GetAllPaperBookAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.PaperBook>> GetAllPaperBookAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllEBook", ReplyAction="http://tempuri.org/IBookService/GetAllEBookResponse")]
-        DesktopApplication.BookService.EBook[] GetAllEBook();
+        System.Collections.Generic.List<DesktopApplication.BookService.EBook> GetAllEBook();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetAllEBook", ReplyAction="http://tempuri.org/IBookService/GetAllEBookResponse")]
-        System.Threading.Tasks.Task<DesktopApplication.BookService.EBook[]> GetAllEBookAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.EBook>> GetAllEBookAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/GetBookById", ReplyAction="http://tempuri.org/IBookService/GetBookByIdResponse")]
         DesktopApplication.BookService.Book GetBookById(int id);
@@ -838,10 +838,10 @@ namespace DesktopApplication.BookService {
         System.Threading.Tasks.Task<DesktopApplication.BookService.Book> GetBookByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SearchBook", ReplyAction="http://tempuri.org/IBookService/SearchBookResponse")]
-        DesktopApplication.BookService.Book[] SearchBook(string key);
+        System.Collections.Generic.List<DesktopApplication.BookService.Book> SearchBook(string key);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SearchBook", ReplyAction="http://tempuri.org/IBookService/SearchBookResponse")]
-        System.Threading.Tasks.Task<DesktopApplication.BookService.Book[]> SearchBookAsync(string key);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Book>> SearchBookAsync(string key);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SaveBook", ReplyAction="http://tempuri.org/IBookService/SaveBookResponse")]
         void SaveBook(DesktopApplication.BookService.Book book);
@@ -877,27 +877,27 @@ namespace DesktopApplication.BookService {
                 base(binding, remoteAddress) {
         }
         
-        public DesktopApplication.BookService.Book[] GetAllBook() {
+        public System.Collections.Generic.List<DesktopApplication.BookService.Book> GetAllBook() {
             return base.Channel.GetAllBook();
         }
         
-        public System.Threading.Tasks.Task<DesktopApplication.BookService.Book[]> GetAllBookAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Book>> GetAllBookAsync() {
             return base.Channel.GetAllBookAsync();
         }
         
-        public DesktopApplication.BookService.PaperBook[] GetAllPaperBook() {
+        public System.Collections.Generic.List<DesktopApplication.BookService.PaperBook> GetAllPaperBook() {
             return base.Channel.GetAllPaperBook();
         }
         
-        public System.Threading.Tasks.Task<DesktopApplication.BookService.PaperBook[]> GetAllPaperBookAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.PaperBook>> GetAllPaperBookAsync() {
             return base.Channel.GetAllPaperBookAsync();
         }
         
-        public DesktopApplication.BookService.EBook[] GetAllEBook() {
+        public System.Collections.Generic.List<DesktopApplication.BookService.EBook> GetAllEBook() {
             return base.Channel.GetAllEBook();
         }
         
-        public System.Threading.Tasks.Task<DesktopApplication.BookService.EBook[]> GetAllEBookAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.EBook>> GetAllEBookAsync() {
             return base.Channel.GetAllEBookAsync();
         }
         
@@ -909,11 +909,11 @@ namespace DesktopApplication.BookService {
             return base.Channel.GetBookByIdAsync(id);
         }
         
-        public DesktopApplication.BookService.Book[] SearchBook(string key) {
+        public System.Collections.Generic.List<DesktopApplication.BookService.Book> SearchBook(string key) {
             return base.Channel.SearchBook(key);
         }
         
-        public System.Threading.Tasks.Task<DesktopApplication.BookService.Book[]> SearchBookAsync(string key) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Book>> SearchBookAsync(string key) {
             return base.Channel.SearchBookAsync(key);
         }
         

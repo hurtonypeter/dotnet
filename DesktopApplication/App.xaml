@@ -1,14 +1,17 @@
 ﻿<Application x:Class="DesktopApplication.App" 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-             StartupUri="MainWindow.xaml" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             StartupUri="MainWindow.xaml"
              d1p1:Ignorable="d" 
-             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
-  <Application.Resources>
-    <!--<BitmapImage x:Key="SearchIcon" UriSource="/DesktopApplication;component/Media/search.png" />-->
-    <!--<BitmapImage x:Key="SearchIcon" UriSource="pack://application:DesktopApplication;component/Media/asd.png" />-->
-    <BitmapImage x:Key="SearchIcon" UriSource=".\Media\Image\Search.png" />
-    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:DesktopApplication.ViewModel" />
-  </Application.Resources>
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:c="clr-namespace:DesktopApplication.Converter">
+    <Application.Resources>
+        <!--<BitmapImage x:Key="SearchIcon" UriSource="/DesktopApplication;component/Media/search.png" />-->
+        <!--<BitmapImage x:Key="SearchIcon" UriSource="pack://application:DesktopApplication;component/Media/asd.png" />-->
+        <BitmapImage x:Key="SearchIcon" UriSource=".\Media\Image\Search.png" />
+        <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:DesktopApplication.ViewModel" />
+        <c:WriterListToStringConverter x:Key="WriterListToStringConverter" />
+        <c:CategoryListToStringConverter x:Key="CategoryListToStringConverter" />
+    </Application.Resources>
 </Application>

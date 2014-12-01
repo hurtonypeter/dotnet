@@ -24,11 +24,11 @@ namespace DesktopApplication
         {
             InitializeComponent();
 
-            using (var client = new BookService.BookServiceClient())
-            {
-                var books = client.GetAllBook().ToList();
-                bookDataGrid.ItemsSource = books;
-            }
+            //using (var client = new BookService.BookServiceClient())
+            //{
+            //    var books = client.GetAllBook().ToList();
+            //    bookDataGrid.ItemsSource = books;
+            //}
         }
     }
 }

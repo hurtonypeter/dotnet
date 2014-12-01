@@ -42,14 +42,14 @@ namespace DesktopApplication.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MainWindowModel>();
         }
 
-        public MainViewModel Main
+        public MainWindowModel Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                return ServiceLocator.Current.GetInstance<MainWindowModel>();
             }
         }
         
