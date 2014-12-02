@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace DesktopApplication.ViewModel
 {
@@ -70,6 +71,7 @@ namespace DesktopApplication.ViewModel
             {
                 selectedBook = value;
                 RaisePropertyChanged();
+                Messenger.Default.Send<Book>(value);
             }
         }
         
@@ -79,6 +81,7 @@ namespace DesktopApplication.ViewModel
         public MainWindowViewModel(IBookService _bookService)
         {
             bookService = _bookService;
+
             ////if (IsInDesignMode)
             ////{
             ////    // Code runs in Blend --> create design time data.

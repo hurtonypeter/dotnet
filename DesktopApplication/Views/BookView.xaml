@@ -7,6 +7,6 @@
              DataContext="{Binding BookView, Source={StaticResource Locator}}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="{Binding MyProperty}"></TextBlock>
+        <TextBlock Text="{Binding Path=CurrentBook.Title}"></TextBlock>
     </Grid>
 </UserControl>

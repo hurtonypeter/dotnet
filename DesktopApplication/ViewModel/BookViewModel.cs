@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight;
+﻿using DesktopApplication.BookService;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,28 @@ namespace DesktopApplication.ViewModel
     {
         public string MyProperty { get; set; }
 
+        private Book currentBook;
+        public Book CurrentBook
+        {
+            get 
+            {
+                return currentBook; 
+            }
+            set 
+            {
+                currentBook = value;
+                RaisePropertyChanged();
+            }
+        }
+        
+
         public BookViewModel()
         {
             MyProperty = "anyááááád";
+            Messenger.Default.Register<Book>(this, msg =>
+                {
+                    CurrentBook = msg;
+                });
         }
     }
 }
