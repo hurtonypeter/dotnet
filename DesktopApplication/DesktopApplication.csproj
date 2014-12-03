@@ -70,6 +70,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BookServiceClient.cs" />
+    <Compile Include="Converter\BookToVisibilityConverter.cs" />
     <Compile Include="Converter\CategoryListToStringConverter.cs" />
     <Compile Include="Converter\WriterListToStringConverter.cs" />
     <Compile Include="Service References\BookService\Reference.cs">

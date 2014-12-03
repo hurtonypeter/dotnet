@@ -859,7 +859,7 @@ namespace DesktopApplication.BookService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class BookServiceClient : System.ServiceModel.ClientBase<DesktopApplication.BookService.IBookService>, DesktopApplication.BookService.IBookService {
 
-        [PreferredConstructor]
+        
         public BookServiceClient() {
         }
         

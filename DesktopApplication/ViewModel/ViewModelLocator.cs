@@ -44,6 +44,7 @@ namespace DesktopApplication.ViewModel
             ////}
 
             SimpleIoc.Default.Register<IBookService, BookServiceClient>();
+            SimpleIoc.Default.Register<IDummyClass, DummyClass>();
 
             SimpleIoc.Default.Register<MainWindowViewModel>();
             SimpleIoc.Default.Register<BookViewModel>();

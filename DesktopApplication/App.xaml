@@ -13,5 +13,6 @@
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:DesktopApplication.ViewModel" />
         <c:WriterListToStringConverter x:Key="WriterListToStringConverter" />
         <c:CategoryListToStringConverter x:Key="CategoryListToStringConverter" />
+        <c:BookToVisibilityConverter x:Key="BookToVisibilityConverter" />
     </Application.Resources>
 </Application>
