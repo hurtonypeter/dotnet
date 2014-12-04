@@ -47,10 +47,10 @@ namespace DesktopApplication.ViewModel
             {
                 if (searchStartCommand == null)
                 {
-                    searchStartCommand = new RelayCommand<KeyEventArgs>(e =>
+                    searchStartCommand = new RelayCommand<KeyEventArgs>(async (e) =>
                     {
                         books.Clear();
-                        var result = bookService.SearchBook(SearchString);
+                        var result = await bookService.SearchBookAsync(SearchString);
                         result.ForEach(b => books.Add(b));
                     }, e => {
                         if (e.Key == Key.Enter)

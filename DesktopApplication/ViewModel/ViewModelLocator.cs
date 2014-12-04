@@ -52,18 +52,12 @@ namespace DesktopApplication.ViewModel
 
         public MainWindowViewModel Main
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainWindowViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<MainWindowViewModel>(); }
         }
 
         public BookViewModel BookView
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<BookViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<BookViewModel>(); }
         }
 
         public static void Cleanup()

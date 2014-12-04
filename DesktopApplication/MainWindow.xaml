@@ -41,7 +41,7 @@
                 <Label DockPanel.Dock="Right" Padding="8">Keresés:</Label>
             </DockPanel>
 
-            <DataGrid DockPanel.Dock="Top" Margin="5" ItemsSource="{Binding Books}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedBook}">
+            <DataGrid DockPanel.Dock="Top" Margin="5" ItemsSource="{Binding Books}" IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding SelectedBook}" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Írók" Binding="{Binding Writer, Converter={StaticResource WriterListToStringConverter}}" />
                     <DataGridTextColumn Header="Cím" Binding="{Binding Title}" />

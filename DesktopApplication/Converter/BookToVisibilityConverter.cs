@@ -16,7 +16,7 @@ namespace DesktopApplication.Converter
         {
             if (value == null)
             {
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
             }
             else 
             {

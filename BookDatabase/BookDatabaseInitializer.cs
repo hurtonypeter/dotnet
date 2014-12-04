@@ -42,7 +42,24 @@ namespace BookDatabase
                     Title = "Harry Potter és a Bölcsek Köve",
                     OriginalTitle = "Harry Potter and the Philosoper's Stone",
                     Writer = new List<Writer>() { writer1 },
-                    Category = new List<Category>() { cat1 }
+                    Category = new List<Category>() { cat1 },
+                    Copies = new List<BookItem>() {
+                        new BookItem {
+                            Barcode = "12341233",
+                            Bought = DateTime.Now,
+                            Condition = BookCondition.Good,
+                        },
+                        new BookItem {
+                            Barcode = "123243",
+                            Bought = DateTime.Now,
+                            Condition = BookCondition.New,
+                        },
+                        new BookItem {
+                            Barcode = "1264233",
+                            Bought = DateTime.Now,
+                            Condition = BookCondition.New,
+                        }
+                    }
                 },
                 new PaperBook()
                 {
@@ -50,7 +67,24 @@ namespace BookDatabase
                     Title = "Harry Potter and the Chamber of Secrets",
                     OriginalTitle = "Harry Potter and the Chamber of Secrets",
                     Writer = new List<Writer>() { writer1 },
-                    Category = new List<Category>() { cat1 }
+                    Category = new List<Category>() { cat1 },
+                    Copies = new List<BookItem>() {
+                        new BookItem {
+                            Barcode = "9ö98",
+                            Bought = DateTime.Now,
+                            Condition = BookCondition.Good,
+                        },
+                        new BookItem {
+                            Barcode = "1145553",
+                            Bought = DateTime.Now,
+                            Condition = BookCondition.Bad,
+                        },
+                        new BookItem {
+                            Barcode = "1224323433",
+                            Bought = DateTime.Now,
+                            Condition = BookCondition.VeryBad,
+                        }
+                    }
                 },
                 new PaperBook()
                 {

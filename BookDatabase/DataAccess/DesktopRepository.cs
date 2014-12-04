@@ -37,7 +37,12 @@ namespace BookDatabase.DataAccess
         {
             using (var db = new BookContext())
             {
-                return db.Books.SingleOrDefault(b => b.Id == id);
+                var book = db.Books.SingleOrDefault(b => b.Id == id);
+                if(book.GetType() == typeof(PaperBook))
+                {
+                    return db.Books.OfType<PaperBook>().Include(b => b.Copies).SingleOrDefault(b => b.Id == id);
+                }
+                return book;
             }
         }
 

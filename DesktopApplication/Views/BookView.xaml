@@ -5,20 +5,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              DataContext="{Binding BookView, Source={StaticResource Locator}}"
+             xmlns:views="clr-namespace:DesktopApplication.Views"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Border Visibility="{Binding CurrentBook, Converter={StaticResource BookToVisibilityConverter}}" BorderThickness="1" BorderBrush="Gray" Margin="5,5,5,5" Padding="5,5,5,5">
-            <TextBlock>
-                ISBN szám: <TextBlock Text="{Binding CurrentBook.ISBN}" /> <LineBreak />
-                Író: <TextBlock Text="{Binding CurrentBook.Writer, Converter={StaticResource WriterListToStringConverter}}" /><LineBreak />
-                Cím: <TextBlock Text="{Binding CurrentBook.Title}" /> <LineBreak />
-                Eredeti cím: <TextBlock Text="{Binding CurrentBook.OriginalTitle}" /><LineBreak />
-                Kategória: <TextBlock Text="{Binding CurrentBook.Category, Converter={StaticResource CategoryListToStringConverter}}" /><LineBreak />
-            </TextBlock>
+            <StackPanel>
+                <TextBlock>
+                    ISBN szám:
+                    <TextBlock Text="{Binding CurrentBook.ISBN}" />
+                    <LineBreak />
+                    Író:
+                    <TextBlock Text="{Binding CurrentBook.Writer, Converter={StaticResource WriterListToStringConverter}}" />
+                    <LineBreak />
+                    Cím:
+                    <TextBlock Text="{Binding CurrentBook.Title}" />
+                    <LineBreak />
+                    Eredeti cím:
+                    <TextBlock Text="{Binding CurrentBook.OriginalTitle}" />
+                    <LineBreak />
+                    Kategória:
+                    <TextBlock Text="{Binding CurrentBook.Category, Converter={StaticResource CategoryListToStringConverter}}" />
+                </TextBlock>
+                <Grid Visibility="{Binding EBook, Converter={StaticResource BookToVisibilityConverter}}">
+                    <TextBlock>
+                        Elérhetőség: <TextBlock Text="{Binding EBook.FilePath}" /><LineBreak />
+                        Letölthető: <TextBlock Text="{Binding EBook.Downloadable}" />
+                    </TextBlock>
+                </Grid>
+                <Grid Visibility="{Binding PaperBook, Converter={StaticResource BookToVisibilityConverter}}">
+                    <TextBlock>
+                        <LineBreak /> Példányok:<LineBreak />
+                        <ListView ItemsSource="{Binding Path=PaperBook.Copies}" 
+                                  HorizontalContentAlignment="Stretch" 
+                                  HorizontalAlignment="Stretch">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="1" BorderBrush="Gray" Padding="5,2,5,2">
+                                        <TextBlock>
+                                            Vonalkód: <TextBlock Text="{Binding Barcode}"></TextBlock><LineBreak />
+                                            Vétel ideje: <TextBlock Text="{Binding Bought}"></TextBlock><LineBreak />
+                                            Állapot: <TextBlock Text="{Binding Condition}"></TextBlock><LineBreak />
+                                            Státusz: 
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
         </Border>
-        <!--<TextBlock Text="Cím:"></TextBlock>
-        <TextBlock Text="{Binding Path=CurrentBook.Title}"></TextBlock>
-        <TextBlock Text="Eredeti cím:"></TextBlock>
-        <TextBlock Text="{Binding Path=CurrentBook.OriginalTitle}"></TextBlock>-->
     </Grid>
 </UserControl>
