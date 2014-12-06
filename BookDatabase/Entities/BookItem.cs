@@ -30,7 +30,8 @@ namespace BookDatabase.Entities
         public virtual PaperBook BookData { get; set; }
 
         [DataMember]
-        public ICollection<BookStateEntry> BookStateEntries { get; set; }
+        
+        public List<BookStateEntry> BookStateEntries { get; set; }
         
         [DataMember]
         [NotMapped]
@@ -40,10 +41,11 @@ namespace BookDatabase.Entities
             {
                 var lastState = BookStateEntries.LastOrDefault();
 
+                if (lastState == null)
+                    return BookStates.Free;
+
                 if (lastState.Type == BookStateEntryType.Borrow)
-                {
                     return BookStates.Rent;
-                }
 
                 return BookStates.Free;
             }

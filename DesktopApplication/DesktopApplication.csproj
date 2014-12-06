@@ -71,6 +71,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BookServiceClient.cs" />
+    <Compile Include="Converter\BookConditionToTextConverter.cs" />
+    <Compile Include="Converter\BookStatesToTextConverter.cs" />
     <Compile Include="Converter\BookToVisibilityConverter.cs" />
     <Compile Include="Converter\CategoryListToStringConverter.cs" />
     <Compile Include="Converter\WriterListToStringConverter.cs" />

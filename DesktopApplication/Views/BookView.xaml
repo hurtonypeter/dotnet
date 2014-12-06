@@ -45,8 +45,8 @@
                                         <TextBlock>
                                             Vonalkód: <TextBlock Text="{Binding Barcode}"></TextBlock><LineBreak />
                                             Vétel ideje: <TextBlock Text="{Binding Bought}"></TextBlock><LineBreak />
-                                            Állapot: <TextBlock Text="{Binding Condition}"></TextBlock><LineBreak />
-                                            Státusz: 
+                                            Állapot: <TextBlock Text="{Binding Condition, Converter={StaticResource BookConditionToTextConverter}}"></TextBlock><LineBreak />
+                                            Státusz: <TextBlock Text="{Binding CurrentState, Converter={StaticResource BookStatesToTextConverter}}"></TextBlock>
                                         </TextBlock>
                                     </Border>
                                 </DataTemplate>

@@ -1,4 +1,5 @@
-﻿using DesktopApplication.Views;
+﻿using DesktopApplication.BookService;
+using DesktopApplication.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -12,6 +13,8 @@ namespace DesktopApplication.ViewModel
 {
     public class LendBookViewModel : ViewModelBase
     {
+        private IBookService bookService;
+
         private string lendBookId;
         public string LendBookId
         {
@@ -80,9 +83,25 @@ namespace DesktopApplication.ViewModel
             {
                 if (lendBookCommand == null)
                 {
-                    lendBookCommand = new RelayCommand(() =>
+                    lendBookCommand = new RelayCommand(async () =>
                     {
-                        
+                        var result = await bookService.LendBookAsync(LendBookId, LendMemberId);
+                        if (!result.Error)
+                        {
+                            MessageBox.Show("Sikeres kölcsönzés!",
+                                "Siker!",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                            LendBookId = "";
+                            LendMemberId = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.ErrorMessage,
+                                "Hiba",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        }
                     }, null);
                 }
                 return lendBookCommand;
@@ -96,18 +115,45 @@ namespace DesktopApplication.ViewModel
             {
                 if (backBookCommand == null)
                 {
-                    backBookCommand = new RelayCommand(() =>
+                    backBookCommand = new RelayCommand(async () =>
                     {
-                        
-                    }, null);
+                        var result = await bookService.BackBookAsync(BackBookId, BackMemberId);
+                        if (!result.Error)
+                        {
+                            MessageBox.Show("A könyv visszahozva!",
+                                "Siker!",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                            BackBookId = "";
+                            BackMemberId = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.ErrorMessage,
+                                "Hiba",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        }
+                    }, null /*() =>
+                    {
+                        if (string.IsNullOrWhiteSpace(BackBookId) ||
+                            string.IsNullOrWhiteSpace(BackMemberId))
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }*/);
                 }
                 return backBookCommand;
             }
         }
 
-        public LendBookViewModel()
+        public LendBookViewModel(IBookService client)
         {
-            
+            bookService = client;
         }
     }
 }

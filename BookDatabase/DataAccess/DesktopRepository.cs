@@ -41,7 +41,11 @@ namespace BookDatabase.DataAccess
                 var book = db.Books.SingleOrDefault(b => b.Id == id);
                 if(book.GetType() == typeof(PaperBook))
                 {
-                    return db.Books.OfType<PaperBook>().Include(b => b.Copies).SingleOrDefault(b => b.Id == id);
+                    return db.Books.OfType<PaperBook>()
+                        .Include(b => b.Copies.Select(c => c.BookStateEntries))
+                        //.Include(b => b.Copies)
+                        //.Include(b => b.Copies.Select(s => s.BookStateEntries))
+                        .SingleOrDefault(b => b.Id == id);
                 }
                 return book;
             }

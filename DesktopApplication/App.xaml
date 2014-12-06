@@ -14,5 +14,7 @@
         <c:WriterListToStringConverter x:Key="WriterListToStringConverter" />
         <c:CategoryListToStringConverter x:Key="CategoryListToStringConverter" />
         <c:BookToVisibilityConverter x:Key="BookToVisibilityConverter" />
+        <c:BookStatesToTextConverter x:Key="BookStatesToTextConverter" />
+        <c:BookConditionToTextConverter x:Key="BookConditionToTextConverter" />
     </Application.Resources>
 </Application>
