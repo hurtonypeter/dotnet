@@ -26,7 +26,10 @@ namespace TestClient
                         Console.WriteLine(tmp.FilePath);
                     }
                 }
-                
+
+                var resp = client.LendBook("12341233", "987325123");
+                var resp2 = client.BackBook("12341233", "987325123");
+
                 Console.ReadKey();
             }
         }

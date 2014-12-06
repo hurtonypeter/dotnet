@@ -13,6 +13,7 @@
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Service" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IBookService_GetAllBook_InputMessage">
@@ -45,6 +46,18 @@
   <wsdl:message name="IBookService_SearchBook_OutputMessage">
     <wsdl:part name="parameters" element="tns:SearchBookResponse" />
   </wsdl:message>
+  <wsdl:message name="IBookService_LendBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:LendBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_LendBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LendBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_BackBook_InputMessage">
+    <wsdl:part name="parameters" element="tns:BackBook" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_BackBook_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BackBookResponse" />
+  </wsdl:message>
   <wsdl:message name="IBookService_SaveBook_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveBook" />
   </wsdl:message>
@@ -71,6 +84,14 @@
     <wsdl:operation name="SearchBook">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookService/SearchBook" message="tns:IBookService_SearchBook_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBookService/SearchBookResponse" message="tns:IBookService_SearchBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LendBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/LendBook" message="tns:IBookService_LendBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/LendBookResponse" message="tns:IBookService_LendBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BackBook">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/BackBook" message="tns:IBookService_BackBook_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/BackBookResponse" message="tns:IBookService_BackBook_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SaveBook">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookService/SaveBook" message="tns:IBookService_SaveBook_InputMessage" />
@@ -118,6 +139,24 @@
     </wsdl:operation>
     <wsdl:operation name="SearchBook">
       <soap12:operation soapAction="http://tempuri.org/IBookService/SearchBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LendBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/LendBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BackBook">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/BackBook" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

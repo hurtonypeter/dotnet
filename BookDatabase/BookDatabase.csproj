@@ -52,6 +52,7 @@
     <Compile Include="Entities\Writer.cs" />
     <Compile Include="DataAccess\DesktopRepository.cs" />
     <Compile Include="Service\BookService.cs" />
+    <Compile Include="Service\ResponseBase.cs" />
     <Compile Include="Service\IBookService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

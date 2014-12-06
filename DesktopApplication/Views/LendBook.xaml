@@ -1,0 +1,47 @@
+﻿<Window x:Class="DesktopApplication.Views.LendBook"
+        x:Name="LendBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Könyvtár v1.0 - Kölcsönzés" Height="248" Width="518.4"
+        ResizeMode="NoResize"
+        DataContext="{Binding LendBook, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        
+        <GroupBox Grid.Column="0" Grid.Row="0" Header="Kölcsönzés" Margin="5,5,5,5" Padding="5,5,5,5">
+            <TextBlock>
+                Kölcsönözendő könyv vonalódja:<LineBreak></LineBreak>
+                <TextBox VerticalAlignment="Stretch" Width="200" Text="{Binding LendBookId}"></TextBox>
+                    <LineBreak /><LineBreak />
+                Kölcsönző azonosítója:<LineBreak />
+                <TextBox VerticalAlignment="Stretch" Width="200" Text="{Binding LendMemberId}"></TextBox><LineBreak /><LineBreak />
+                <Button Command="{Binding LendBookCommand}">Mehet</Button>
+            </TextBlock>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Grid.Row="0" Header="Könyv viszahozása" Margin="5,5,5,5" Padding="5,5,5,5">
+            <TextBlock>
+                Visszahozandóő könyv vonalódja:<LineBreak></LineBreak>
+                <TextBox VerticalAlignment="Stretch" Width="200" Text="{Binding BackBookId}"></TextBox>
+                    <LineBreak /><LineBreak />
+                Kölcsönző azonosítója:<LineBreak></LineBreak>
+                <TextBox VerticalAlignment="Stretch" Width="200" Text="{Binding BackMemberId}"></TextBox><LineBreak /><LineBreak />
+                <Button Command="{Binding BackBookCommand}">Mehet</Button>
+            </TextBlock>
+        </GroupBox>
+
+        <DockPanel Grid.ColumnSpan="2" Grid.Row="1" LastChildFill="False">
+            <Button Margin="5,5,5,5" 
+                    Padding="8,2,8,2" 
+                    DockPanel.Dock="Right"
+                    Command="{Binding BackToMainWindowCommand}"
+                    CommandParameter="{Binding ElementName=LendBookWindow}">Vissza</Button>
+        </DockPanel>
+    </Grid>
+</Window>

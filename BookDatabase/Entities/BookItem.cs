@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -29,16 +30,25 @@ namespace BookDatabase.Entities
         public virtual PaperBook BookData { get; set; }
 
         [DataMember]
-        public virtual ICollection<BookStateEntry> BookStateEntries { get; set; }
+        public ICollection<BookStateEntry> BookStateEntries { get; set; }
+        
+        [DataMember]
+        [NotMapped]
+        public BookStates CurrentState
+        {
+            get
+            {
+                var lastState = BookStateEntries.LastOrDefault();
 
-        //[DataMember]
-        //public virtual BookStates CurrentState 
-        //{
-        //    get 
-        //    {
-        //        return BookStates.Free;
-        //    }
-        //}
+                if (lastState.Type == BookStateEntryType.Borrow)
+                {
+                    return BookStates.Rent;
+                }
+
+                return BookStates.Free;
+            }
+            private set { }
+        }
 
         [DataMember]
         public BookCondition Condition { get; set; }

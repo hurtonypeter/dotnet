@@ -15,10 +15,10 @@ namespace TestClient.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Book", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Book", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TestClient.BookService.EBook))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(TestClient.BookService.PaperBook))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TestClient.BookService.EBook))]
     public partial class Book : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -142,7 +142,30 @@ namespace TestClient.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PaperBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class PaperBook : TestClient.BookService.Book {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestClient.BookService.BookItem[] CopiesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestClient.BookService.BookItem[] Copies {
+            get {
+                return this.CopiesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CopiesField, value) != true)) {
+                    this.CopiesField = value;
+                    this.RaisePropertyChanged("Copies");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class EBook : TestClient.BookService.Book {
         
@@ -181,30 +204,7 @@ namespace TestClient.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PaperBook", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
-    [System.SerializableAttribute()]
-    public partial class PaperBook : TestClient.BookService.Book {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestClient.BookService.BookItem[] CopiesField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestClient.BookService.BookItem[] Copies {
-            get {
-                return this.CopiesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CopiesField, value) != true)) {
-                    this.CopiesField = value;
-                    this.RaisePropertyChanged("Copies");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Category", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Category", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Category : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -313,7 +313,7 @@ namespace TestClient.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Writer", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Writer", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Writer : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -406,7 +406,7 @@ namespace TestClient.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BookItem", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BookItem", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class BookItem : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -427,6 +427,9 @@ namespace TestClient.BookService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private TestClient.BookService.BookCondition ConditionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestClient.BookService.BookStates CurrentStateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -507,6 +510,19 @@ namespace TestClient.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestClient.BookService.BookStates CurrentState {
+            get {
+                return this.CurrentStateField;
+            }
+            set {
+                if ((this.CurrentStateField.Equals(value) != true)) {
+                    this.CurrentStateField = value;
+                    this.RaisePropertyChanged("CurrentState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -531,12 +547,15 @@ namespace TestClient.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="BookStateEntry", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BookStateEntry", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class BookStateEntry : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestClient.BookService.BookItem BookItemField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime DateField;
@@ -548,9 +567,6 @@ namespace TestClient.BookService {
         private TestClient.BookService.Member MemberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MemberIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private TestClient.BookService.BookStateEntryType TypeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -560,6 +576,19 @@ namespace TestClient.BookService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestClient.BookService.BookItem BookItem {
+            get {
+                return this.BookItemField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BookItemField, value) != true)) {
+                    this.BookItemField = value;
+                    this.RaisePropertyChanged("BookItem");
+                }
             }
         }
         
@@ -598,19 +627,6 @@ namespace TestClient.BookService {
                 if ((object.ReferenceEquals(this.MemberField, value) != true)) {
                     this.MemberField = value;
                     this.RaisePropertyChanged("Member");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MemberId {
-            get {
-                return this.MemberIdField;
-            }
-            set {
-                if ((this.MemberIdField.Equals(value) != true)) {
-                    this.MemberIdField = value;
-                    this.RaisePropertyChanged("MemberId");
                 }
             }
         }
@@ -656,9 +672,24 @@ namespace TestClient.BookService {
         VeryBad = 3,
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BookStates", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    public enum BookStates : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Free = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rent = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Expired = 2,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Member", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Member", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities", IsReference=true)]
     [System.SerializableAttribute()]
     public partial class Member : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -809,6 +840,67 @@ namespace TestClient.BookService {
         Back = 1,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseBase", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Service")]
+    [System.SerializableAttribute()]
+    public partial class ResponseBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ErrorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorMessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Error {
+            get {
+                return this.ErrorField;
+            }
+            set {
+                if ((this.ErrorField.Equals(value) != true)) {
+                    this.ErrorField = value;
+                    this.RaisePropertyChanged("Error");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorMessage {
+            get {
+                return this.ErrorMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorMessageField, value) != true)) {
+                    this.ErrorMessageField = value;
+                    this.RaisePropertyChanged("ErrorMessage");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookService.IBookService")]
     public interface IBookService {
@@ -842,6 +934,18 @@ namespace TestClient.BookService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SearchBook", ReplyAction="http://tempuri.org/IBookService/SearchBookResponse")]
         System.Threading.Tasks.Task<TestClient.BookService.Book[]> SearchBookAsync(string key);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/LendBook", ReplyAction="http://tempuri.org/IBookService/LendBookResponse")]
+        TestClient.BookService.ResponseBase LendBook(string bookId, string memberId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/LendBook", ReplyAction="http://tempuri.org/IBookService/LendBookResponse")]
+        System.Threading.Tasks.Task<TestClient.BookService.ResponseBase> LendBookAsync(string bookId, string memberId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/BackBook", ReplyAction="http://tempuri.org/IBookService/BackBookResponse")]
+        TestClient.BookService.ResponseBase BackBook(string bookId, string memberId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/BackBook", ReplyAction="http://tempuri.org/IBookService/BackBookResponse")]
+        System.Threading.Tasks.Task<TestClient.BookService.ResponseBase> BackBookAsync(string bookId, string memberId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SaveBook", ReplyAction="http://tempuri.org/IBookService/SaveBookResponse")]
         void SaveBook(TestClient.BookService.Book book);
@@ -915,6 +1019,22 @@ namespace TestClient.BookService {
         
         public System.Threading.Tasks.Task<TestClient.BookService.Book[]> SearchBookAsync(string key) {
             return base.Channel.SearchBookAsync(key);
+        }
+        
+        public TestClient.BookService.ResponseBase LendBook(string bookId, string memberId) {
+            return base.Channel.LendBook(bookId, memberId);
+        }
+        
+        public System.Threading.Tasks.Task<TestClient.BookService.ResponseBase> LendBookAsync(string bookId, string memberId) {
+            return base.Channel.LendBookAsync(bookId, memberId);
+        }
+        
+        public TestClient.BookService.ResponseBase BackBook(string bookId, string memberId) {
+            return base.Channel.BackBook(bookId, memberId);
+        }
+        
+        public System.Threading.Tasks.Task<TestClient.BookService.ResponseBase> BackBookAsync(string bookId, string memberId) {
+            return base.Channel.BackBookAsync(bookId, memberId);
         }
         
         public void SaveBook(TestClient.BookService.Book book) {

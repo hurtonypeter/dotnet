@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookDatabase.Entities;
+using BookDatabase.Service;
 
 namespace BookDatabase.DataAccess
 {
@@ -72,6 +73,96 @@ namespace BookDatabase.DataAccess
                               select b).ToList();
                 return result;
             }
+        }
+
+        public ResponseBase LendBook(string bookId, string memberId)
+        {
+            var response = new ResponseBase();
+            using (var db = new BookContext())
+            {
+                var book = db.BookItems.Include(b => b.BookStateEntries).SingleOrDefault(b => b.Barcode == bookId);
+                var member = db.Members.SingleOrDefault(b => b.Barcode == memberId);
+
+                if(book == null || member == null)
+                {
+                    response.ErrorMessage = "Nincs ilyen könyv vagy tag.";
+                    response.Error = true;
+                    return response;
+                }
+
+                if(book.CurrentState == BookStates.Rent || 
+                    book.CurrentState == BookStates.Expired)
+                {
+                    response.ErrorMessage = "A megadott könyv nem szabad.";
+                    response.Error = true;
+                    return response;
+                }
+
+                var status = new BookStateEntry
+                {
+                    Date = DateTime.Now,
+                    BookItem = book,
+                    Member = member,
+                    Type = BookStateEntryType.Borrow
+                };
+
+                try
+                {
+                    db.BookStateEntries.Add(status);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    response.ErrorMessage = e.Message;
+                    response.Error = true;
+                }
+            }
+            return response;
+        }
+
+
+        public ResponseBase BackBook(string bookId, string memberId)
+        {
+            var response = new ResponseBase();
+            using (var db = new BookContext())
+            {
+                var book = db.BookItems.Include(b => b.BookStateEntries).SingleOrDefault(b => b.Barcode == bookId);
+                var member = db.Members.SingleOrDefault(b => b.Barcode == memberId);
+
+                if (book == null || member == null)
+                {
+                    response.ErrorMessage = "Nincs ilyen könyv vagy tag.";
+                    response.Error = true;
+                    return response;
+                }
+
+                if (book.CurrentState == BookStates.Free )
+                {
+                    response.ErrorMessage = "A megadott könyv a könyvtárban van.";
+                    response.Error = true;
+                    return response;
+                }
+
+                var status = new BookStateEntry
+                {
+                    Date = DateTime.Now,
+                    BookItem = book,
+                    Member = member,
+                    Type = BookStateEntryType.Back
+                };
+
+                try
+                {
+                    db.BookStateEntries.Add(status);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    response.ErrorMessage = e.Message;
+                    response.Error = true;
+                }
+            }
+            return response;
         }
     }
 }

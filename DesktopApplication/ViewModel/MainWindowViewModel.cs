@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
+using DesktopApplication.Views;
 
 namespace DesktopApplication.ViewModel
 {
@@ -72,6 +73,23 @@ namespace DesktopApplication.ViewModel
                 selectedBook = value;
                 RaisePropertyChanged();
                 Messenger.Default.Send<Book>(value);
+            }
+        }
+
+        private RelayCommand<Window> lendBookCommand;
+        public RelayCommand<Window> LendBookCommand
+        {
+            get
+            {
+                if (lendBookCommand == null)
+                {
+                    lendBookCommand = new RelayCommand<Window>((w) =>
+                    {
+                        new LendBook().Show();
+                        w.Close();
+                    }, null);
+                }
+                return lendBookCommand;
             }
         }
         

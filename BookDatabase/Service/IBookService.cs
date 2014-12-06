@@ -27,6 +27,12 @@ namespace BookDatabase.Service
         List<Book> SearchBook(string key);
 
         [OperationContract]
+        ResponseBase LendBook(string bookId, string memberId);
+
+        [OperationContract]
+        ResponseBase BackBook(string bookId, string memberId);
+
+        [OperationContract]
         void SaveBook(Book book);
     }
 }

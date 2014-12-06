@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Service" />
   <xs:element name="GetAllBook">
     <xs:complexType>
       <xs:sequence />
@@ -65,10 +66,40 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LendBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bookId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LendBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BookDatabase.Service" minOccurs="0" name="LendBookResult" nillable="true" type="q6:ResponseBase" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BackBook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="bookId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="memberId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BackBookResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/BookDatabase.Service" minOccurs="0" name="BackBookResult" nillable="true" type="q7:ResponseBase" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SaveBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BookDatabase.Entities" minOccurs="0" name="book" nillable="true" type="q6:Book" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BookDatabase.Entities" minOccurs="0" name="book" nillable="true" type="q8:Book" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

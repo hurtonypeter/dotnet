@@ -24,10 +24,11 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/BookService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="BookService3.xsd" MetadataType="Schema" ID="885d858d-c786-4191-8ee4-f4d7e18800fa" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd3" />
     <MetadataFile FileName="BookService.xsd" MetadataType="Schema" ID="8d6a823f-a0ff-4fa9-8f32-77874ca334c1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd0" />
+    <MetadataFile FileName="BookService.disco" MetadataType="Disco" ID="424a4ca8-94b3-4f13-8a9b-4fb176ce6b26" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BookService?disco" />
     <MetadataFile FileName="BookService.wsdl" MetadataType="Wsdl" ID="5bc2fee6-74a1-4aee-9118-e1bf59952f00" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BookService?wsdl" />
     <MetadataFile FileName="BookService1.xsd" MetadataType="Schema" ID="fc68c635-145f-48b2-86fc-a95237aff737" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd2" />
-    <MetadataFile FileName="BookService.disco" MetadataType="Disco" ID="424a4ca8-94b3-4f13-8a9b-4fb176ce6b26" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BookService?disco" />
     <MetadataFile FileName="BookService2.xsd" MetadataType="Schema" ID="e9770261-76ee-4aa1-887c-ce839df346c9" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/BookService?xsd=xsd1" />
   </Metadata>
   <Extensions>

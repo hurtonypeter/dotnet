@@ -36,6 +36,6 @@ namespace BookDatabase.Entities
         public virtual Member Member { get; set; }
 
         [DataMember]
-        public int MemberId { get; set; }
+        public virtual BookItem BookItem { get; set; }
     }
 }

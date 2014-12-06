@@ -1,4 +1,5 @@
 ﻿using BookDatabase.Entities;
+using BookDatabase.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace BookDatabase.DataAccess
         Book GetBookById(int id);
         void SaveBook(Book book);
         List<Book> SearchBook(string searchKey);
+        ResponseBase LendBook(string bookId, string memberId);
+        ResponseBase BackBook(string bookId, string memberId);
     }
 }

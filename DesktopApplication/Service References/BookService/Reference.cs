@@ -11,7 +11,6 @@
 namespace DesktopApplication.BookService {
     using System.Runtime.Serialization;
     using System;
-    using GalaSoft.MvvmLight.Ioc;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -430,6 +429,9 @@ namespace DesktopApplication.BookService {
         private DesktopApplication.BookService.BookCondition ConditionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopApplication.BookService.BookStates CurrentStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -508,6 +510,19 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopApplication.BookService.BookStates CurrentState {
+            get {
+                return this.CurrentStateField;
+            }
+            set {
+                if ((this.CurrentStateField.Equals(value) != true)) {
+                    this.CurrentStateField = value;
+                    this.RaisePropertyChanged("CurrentState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id {
             get {
                 return this.IdField;
@@ -540,6 +555,9 @@ namespace DesktopApplication.BookService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopApplication.BookService.BookItem BookItemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime DateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -547,9 +565,6 @@ namespace DesktopApplication.BookService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private DesktopApplication.BookService.Member MemberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MemberIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private DesktopApplication.BookService.BookStateEntryType TypeField;
@@ -561,6 +576,19 @@ namespace DesktopApplication.BookService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopApplication.BookService.BookItem BookItem {
+            get {
+                return this.BookItemField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BookItemField, value) != true)) {
+                    this.BookItemField = value;
+                    this.RaisePropertyChanged("BookItem");
+                }
             }
         }
         
@@ -604,19 +632,6 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MemberId {
-            get {
-                return this.MemberIdField;
-            }
-            set {
-                if ((this.MemberIdField.Equals(value) != true)) {
-                    this.MemberIdField = value;
-                    this.RaisePropertyChanged("MemberId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public DesktopApplication.BookService.BookStateEntryType Type {
             get {
                 return this.TypeField;
@@ -655,6 +670,21 @@ namespace DesktopApplication.BookService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         VeryBad = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.FlagsAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BookStates", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Entities")]
+    public enum BookStates : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Free = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Rent = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Expired = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -810,6 +840,67 @@ namespace DesktopApplication.BookService {
         Back = 1,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseBase", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Service")]
+    [System.SerializableAttribute()]
+    public partial class ResponseBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ErrorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorMessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Error {
+            get {
+                return this.ErrorField;
+            }
+            set {
+                if ((this.ErrorField.Equals(value) != true)) {
+                    this.ErrorField = value;
+                    this.RaisePropertyChanged("Error");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorMessage {
+            get {
+                return this.ErrorMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorMessageField, value) != true)) {
+                    this.ErrorMessageField = value;
+                    this.RaisePropertyChanged("ErrorMessage");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookService.IBookService")]
     public interface IBookService {
@@ -844,6 +935,18 @@ namespace DesktopApplication.BookService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SearchBook", ReplyAction="http://tempuri.org/IBookService/SearchBookResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Book>> SearchBookAsync(string key);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/LendBook", ReplyAction="http://tempuri.org/IBookService/LendBookResponse")]
+        DesktopApplication.BookService.ResponseBase LendBook(string bookId, string memberId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/LendBook", ReplyAction="http://tempuri.org/IBookService/LendBookResponse")]
+        System.Threading.Tasks.Task<DesktopApplication.BookService.ResponseBase> LendBookAsync(string bookId, string memberId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/BackBook", ReplyAction="http://tempuri.org/IBookService/BackBookResponse")]
+        DesktopApplication.BookService.ResponseBase BackBook(string bookId, string memberId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/BackBook", ReplyAction="http://tempuri.org/IBookService/BackBookResponse")]
+        System.Threading.Tasks.Task<DesktopApplication.BookService.ResponseBase> BackBookAsync(string bookId, string memberId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SaveBook", ReplyAction="http://tempuri.org/IBookService/SaveBookResponse")]
         void SaveBook(DesktopApplication.BookService.Book book);
         
@@ -858,7 +961,6 @@ namespace DesktopApplication.BookService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class BookServiceClient : System.ServiceModel.ClientBase<DesktopApplication.BookService.IBookService>, DesktopApplication.BookService.IBookService {
-
         
         public BookServiceClient() {
         }
@@ -917,6 +1019,22 @@ namespace DesktopApplication.BookService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Book>> SearchBookAsync(string key) {
             return base.Channel.SearchBookAsync(key);
+        }
+        
+        public DesktopApplication.BookService.ResponseBase LendBook(string bookId, string memberId) {
+            return base.Channel.LendBook(bookId, memberId);
+        }
+        
+        public System.Threading.Tasks.Task<DesktopApplication.BookService.ResponseBase> LendBookAsync(string bookId, string memberId) {
+            return base.Channel.LendBookAsync(bookId, memberId);
+        }
+        
+        public DesktopApplication.BookService.ResponseBase BackBook(string bookId, string memberId) {
+            return base.Channel.BackBook(bookId, memberId);
+        }
+        
+        public System.Threading.Tasks.Task<DesktopApplication.BookService.ResponseBase> BackBookAsync(string bookId, string memberId) {
+            return base.Channel.BackBookAsync(bookId, memberId);
         }
         
         public void SaveBook(DesktopApplication.BookService.Book book) {

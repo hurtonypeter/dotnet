@@ -80,10 +80,14 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BookViewModel.cs" />
+    <Compile Include="ViewModel\LendBookViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\BookView.xaml.cs">
       <DependentUpon>BookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LendBook.xaml.cs">
+      <DependentUpon>LendBook.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +102,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\BookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LendBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,6 +144,9 @@
     <None Include="Service References\BookService\BookService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\BookService\BookService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\BookService\DesktopApplication.BookService.Book.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -165,6 +176,9 @@
     <None Include="Service References\BookService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\BookService\DesktopApplication.BookService.ResponseBase.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\BookService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

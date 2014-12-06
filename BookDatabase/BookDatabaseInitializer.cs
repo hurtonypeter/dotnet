@@ -163,6 +163,37 @@ namespace BookDatabase
             };
 
             context.Books.AddRange(books);
+
+            var members = new List<Member>
+            {
+                new Member
+                {
+                    Barcode = "987325123",
+                    Name = "Hakapeszi Maki",
+                    Registration = DateTime.Now,
+                    Telephone = "20/33-33-996",
+                    Address = "6528. itt meg itt"
+                },
+                new Member
+                {
+                    Barcode = "98745443323",
+                    Name = "Hurtony Péter",
+                    Registration = DateTime.Now,
+                    Telephone = "20/22-55-996",
+                    Address = "1234. itt meg itt"
+                },
+                new Member
+                {
+                    Barcode = "1212745443323",
+                    Name = "Sevecsek Balázs",
+                    Registration = DateTime.Now,
+                    Telephone = "20/11-77-996",
+                    Address = "4321. itt meg itt"
+                }
+            };
+
+            context.Members.AddRange(members);
+
             context.SaveChanges();
         }
     }

@@ -38,12 +38,6 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Category" nillable="true" type="tns:Category" />
-  <xs:complexType name="ArrayOfPaperBook">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaperBook" nillable="true" type="tns:PaperBook" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPaperBook" nillable="true" type="tns:ArrayOfPaperBook" />
   <xs:complexType name="PaperBook">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Book">
@@ -67,6 +61,7 @@
       <xs:element minOccurs="0" name="BookStateEntries" nillable="true" type="tns:ArrayOfBookStateEntry" />
       <xs:element minOccurs="0" name="Bought" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Condition" type="tns:BookCondition" />
+      <xs:element minOccurs="0" name="CurrentState" type="tns:BookStates" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
@@ -81,10 +76,10 @@
   <xs:element name="ArrayOfBookStateEntry" nillable="true" type="tns:ArrayOfBookStateEntry" />
   <xs:complexType name="BookStateEntry">
     <xs:sequence>
+      <xs:element minOccurs="0" name="BookItem" nillable="true" type="tns:BookItem" />
       <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Member" nillable="true" type="tns:Member" />
-      <xs:element minOccurs="0" name="MemberId" type="xs:int" />
       <xs:element minOccurs="0" name="Type" type="tns:BookStateEntryType" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
@@ -105,63 +100,6 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Member" nillable="true" type="tns:Member" />
-  <xs:simpleType name="BookStateEntryType">
-    <xs:list>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="Borrow">
-            <xs:annotation>
-              <xs:appinfo>
-                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:enumeration>
-          <xs:enumeration value="Back">
-            <xs:annotation>
-              <xs:appinfo>
-                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
-              </xs:appinfo>
-            </xs:annotation>
-          </xs:enumeration>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:list>
-  </xs:simpleType>
-  <xs:element name="BookStateEntryType" nillable="true" type="tns:BookStateEntryType" />
-  <xs:complexType name="EBook">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Book">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Downloadable" type="xs:boolean" />
-          <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="EBook" nillable="true" type="tns:EBook" />
-  <xs:complexType name="ArrayOfWriter">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Writer" nillable="true" type="tns:Writer" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfWriter" nillable="true" type="tns:ArrayOfWriter" />
-  <xs:complexType name="Writer">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Books" nillable="true" type="tns:ArrayOfBook" />
-      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="Writer" nillable="true" type="tns:Writer" />
-  <xs:complexType name="ArrayOfEBook">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="EBook" nillable="true" type="tns:EBook" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfEBook" nillable="true" type="tns:ArrayOfEBook" />
   <xs:simpleType name="BookCondition">
     <xs:list>
       <xs:simpleType>
@@ -199,4 +137,97 @@
     </xs:list>
   </xs:simpleType>
   <xs:element name="BookCondition" nillable="true" type="tns:BookCondition" />
+  <xs:simpleType name="BookStateEntryType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Borrow">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Back">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="BookStateEntryType" nillable="true" type="tns:BookStateEntryType" />
+  <xs:complexType name="ArrayOfPaperBook">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaperBook" nillable="true" type="tns:PaperBook" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPaperBook" nillable="true" type="tns:ArrayOfPaperBook" />
+  <xs:complexType name="ArrayOfEBook">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EBook" nillable="true" type="tns:EBook" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEBook" nillable="true" type="tns:ArrayOfEBook" />
+  <xs:complexType name="EBook">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Book">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Downloadable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EBook" nillable="true" type="tns:EBook" />
+  <xs:complexType name="ArrayOfWriter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Writer" nillable="true" type="tns:Writer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWriter" nillable="true" type="tns:ArrayOfWriter" />
+  <xs:complexType name="Writer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Books" nillable="true" type="tns:ArrayOfBook" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Writer" nillable="true" type="tns:Writer" />
+  <xs:simpleType name="BookStates">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Free">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Rent">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Expired">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="BookStates" nillable="true" type="tns:BookStates" />
 </xs:schema>

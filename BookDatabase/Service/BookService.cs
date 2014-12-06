@@ -47,5 +47,16 @@ namespace BookDatabase.Service
         {
             return db.SearchBook(key);
         }
+
+        public ResponseBase LendBook(string bookId, string memberId)
+        {
+            return db.LendBook(bookId, memberId);
+        }
+
+
+        public ResponseBase BackBook(string bookId, string memberId)
+        {
+            return db.BackBook(bookId, memberId);
+        }
     }
 }

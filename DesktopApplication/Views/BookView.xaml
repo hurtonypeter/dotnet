@@ -7,10 +7,11 @@
              DataContext="{Binding BookView, Source={StaticResource Locator}}"
              xmlns:views="clr-namespace:DesktopApplication.Views"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Border Visibility="{Binding CurrentBook, Converter={StaticResource BookToVisibilityConverter}}" BorderThickness="1" BorderBrush="Gray" Margin="5,5,5,5" Padding="5,5,5,5">
-            <StackPanel>
-                <TextBlock>
+    <ScrollViewer>
+        <Grid>
+            <Border Visibility="{Binding CurrentBook, Converter={StaticResource BookToVisibilityConverter}}" BorderThickness="1" BorderBrush="Gray" Margin="5,5,5,5" Padding="5,5,5,5">
+                <StackPanel>
+                    <TextBlock>
                     ISBN szám:
                     <TextBlock Text="{Binding CurrentBook.ISBN}" />
                     <LineBreak />
@@ -26,14 +27,14 @@
                     Kategória:
                     <TextBlock Text="{Binding CurrentBook.Category, Converter={StaticResource CategoryListToStringConverter}}" />
                 </TextBlock>
-                <Grid Visibility="{Binding EBook, Converter={StaticResource BookToVisibilityConverter}}">
-                    <TextBlock>
+                    <Grid Visibility="{Binding EBook, Converter={StaticResource BookToVisibilityConverter}}">
+                        <TextBlock>
                         Elérhetőség: <TextBlock Text="{Binding EBook.FilePath}" /><LineBreak />
                         Letölthető: <TextBlock Text="{Binding EBook.Downloadable}" />
                     </TextBlock>
-                </Grid>
-                <Grid Visibility="{Binding PaperBook, Converter={StaticResource BookToVisibilityConverter}}">
-                    <TextBlock>
+                    </Grid>
+                    <Grid Visibility="{Binding PaperBook, Converter={StaticResource BookToVisibilityConverter}}">
+                        <TextBlock>
                         <LineBreak /> Példányok:<LineBreak />
                         <ListView ItemsSource="{Binding Path=PaperBook.Copies}" 
                                   HorizontalContentAlignment="Stretch" 
@@ -53,7 +54,9 @@
                         </ListView>
                     </TextBlock>
                 </Grid>
-            </StackPanel>
-        </Border>
-    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+    </ScrollViewer>
 </UserControl>
