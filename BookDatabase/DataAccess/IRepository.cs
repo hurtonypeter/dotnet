@@ -18,5 +18,7 @@ namespace BookDatabase.DataAccess
         List<Book> SearchBook(string searchKey);
         ResponseBase LendBook(string bookId, string memberId);
         ResponseBase BackBook(string bookId, string memberId);
+        List<Member> SearchMember(string key);
+        SaveMemberResponse SaveMember(Member member);
     }
 }

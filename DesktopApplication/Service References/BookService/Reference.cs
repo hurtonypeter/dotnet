@@ -715,6 +715,9 @@ namespace DesktopApplication.BookService {
         private System.DateTime RegistrationField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TelephoneField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -806,6 +809,19 @@ namespace DesktopApplication.BookService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Telephone {
             get {
                 return this.TelephoneField;
@@ -842,8 +858,9 @@ namespace DesktopApplication.BookService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseBase", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Service")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseBase", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Service", IsReference=true)]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DesktopApplication.BookService.SaveMemberResponse))]
     public partial class ResponseBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -901,6 +918,29 @@ namespace DesktopApplication.BookService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SaveMemberResponse", Namespace="http://schemas.datacontract.org/2004/07/BookDatabase.Service", IsReference=true)]
+    [System.SerializableAttribute()]
+    public partial class SaveMemberResponse : DesktopApplication.BookService.ResponseBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DesktopApplication.BookService.Member MemberField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DesktopApplication.BookService.Member Member {
+            get {
+                return this.MemberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MemberField, value) != true)) {
+                    this.MemberField = value;
+                    this.RaisePropertyChanged("Member");
+                }
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BookService.IBookService")]
     public interface IBookService {
@@ -952,6 +992,18 @@ namespace DesktopApplication.BookService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SaveBook", ReplyAction="http://tempuri.org/IBookService/SaveBookResponse")]
         System.Threading.Tasks.Task SaveBookAsync(DesktopApplication.BookService.Book book);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SearchMember", ReplyAction="http://tempuri.org/IBookService/SearchMemberResponse")]
+        System.Collections.Generic.List<DesktopApplication.BookService.Member> SearchMember(string key);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SearchMember", ReplyAction="http://tempuri.org/IBookService/SearchMemberResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Member>> SearchMemberAsync(string key);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SaveMember", ReplyAction="http://tempuri.org/IBookService/SaveMemberResponse")]
+        DesktopApplication.BookService.SaveMemberResponse SaveMember(DesktopApplication.BookService.Member member);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookService/SaveMember", ReplyAction="http://tempuri.org/IBookService/SaveMemberResponse")]
+        System.Threading.Tasks.Task<DesktopApplication.BookService.SaveMemberResponse> SaveMemberAsync(DesktopApplication.BookService.Member member);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1043,6 +1095,22 @@ namespace DesktopApplication.BookService {
         
         public System.Threading.Tasks.Task SaveBookAsync(DesktopApplication.BookService.Book book) {
             return base.Channel.SaveBookAsync(book);
+        }
+        
+        public System.Collections.Generic.List<DesktopApplication.BookService.Member> SearchMember(string key) {
+            return base.Channel.SearchMember(key);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DesktopApplication.BookService.Member>> SearchMemberAsync(string key) {
+            return base.Channel.SearchMemberAsync(key);
+        }
+        
+        public DesktopApplication.BookService.SaveMemberResponse SaveMember(DesktopApplication.BookService.Member member) {
+            return base.Channel.SaveMember(member);
+        }
+        
+        public System.Threading.Tasks.Task<DesktopApplication.BookService.SaveMemberResponse> SaveMemberAsync(DesktopApplication.BookService.Member member) {
+            return base.Channel.SaveMemberAsync(member);
         }
     }
 }

@@ -38,6 +38,12 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="ArrayOfPaperBook">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaperBook" nillable="true" type="tns:PaperBook" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPaperBook" nillable="true" type="tns:ArrayOfPaperBook" />
   <xs:complexType name="PaperBook">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Book">
@@ -94,12 +100,47 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Registration" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="Member" nillable="true" type="tns:Member" />
+  <xs:complexType name="Writer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Books" nillable="true" type="tns:ArrayOfBook" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Writer" nillable="true" type="tns:Writer" />
+  <xs:complexType name="EBook">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Book">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Downloadable" type="xs:boolean" />
+          <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EBook" nillable="true" type="tns:EBook" />
+  <xs:complexType name="ArrayOfWriter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Writer" nillable="true" type="tns:Writer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWriter" nillable="true" type="tns:ArrayOfWriter" />
+  <xs:complexType name="ArrayOfEBook">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EBook" nillable="true" type="tns:EBook" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEBook" nillable="true" type="tns:ArrayOfEBook" />
   <xs:simpleType name="BookCondition">
     <xs:list>
       <xs:simpleType>
@@ -160,46 +201,6 @@
     </xs:list>
   </xs:simpleType>
   <xs:element name="BookStateEntryType" nillable="true" type="tns:BookStateEntryType" />
-  <xs:complexType name="ArrayOfPaperBook">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaperBook" nillable="true" type="tns:PaperBook" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPaperBook" nillable="true" type="tns:ArrayOfPaperBook" />
-  <xs:complexType name="ArrayOfEBook">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="EBook" nillable="true" type="tns:EBook" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfEBook" nillable="true" type="tns:ArrayOfEBook" />
-  <xs:complexType name="EBook">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Book">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Downloadable" type="xs:boolean" />
-          <xs:element minOccurs="0" name="FilePath" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="EBook" nillable="true" type="tns:EBook" />
-  <xs:complexType name="ArrayOfWriter">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Writer" nillable="true" type="tns:Writer" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfWriter" nillable="true" type="tns:ArrayOfWriter" />
-  <xs:complexType name="Writer">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Books" nillable="true" type="tns:ArrayOfBook" />
-      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="Writer" nillable="true" type="tns:Writer" />
   <xs:simpleType name="BookStates">
     <xs:list>
       <xs:simpleType>
@@ -230,4 +231,10 @@
     </xs:list>
   </xs:simpleType>
   <xs:element name="BookStates" nillable="true" type="tns:BookStates" />
+  <xs:complexType name="ArrayOfMember">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Member" nillable="true" type="tns:Member" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMember" nillable="true" type="tns:ArrayOfMember" />
 </xs:schema>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -30,6 +31,10 @@ namespace BookDatabase.Entities
 
         [DataMember]
         public string Barcode { get; set; }
+
+        [Timestamp]
+        [DataMember]
+        public byte[] RowVersion { get; set; }
 
         [DataMember]
         public virtual ICollection<BookStateEntry> BookStates { get; set; }

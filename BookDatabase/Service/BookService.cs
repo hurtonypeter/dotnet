@@ -58,5 +58,16 @@ namespace BookDatabase.Service
         {
             return db.BackBook(bookId, memberId);
         }
+
+
+        public List<Member> SearchMember(string key)
+        {
+            return db.SearchMember(key);
+        }
+
+        public SaveMemberResponse SaveMember(Member member)
+        {
+            return db.SaveMember(member);
+        }
     }
 }

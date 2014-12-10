@@ -54,6 +54,7 @@
     <Compile Include="Service\BookService.cs" />
     <Compile Include="Service\ResponseBase.cs" />
     <Compile Include="Service\IBookService.cs" />
+    <Compile Include="Service\SaveMemberResponse.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -168,5 +168,23 @@ namespace BookDatabase.DataAccess
             }
             return response;
         }
+
+
+        public List<Member> SearchMember(string searchKey)
+        {
+            string key = searchKey.ToLower();
+            using (var db = new BookContext())
+            {
+                return db.Members.Where(m => m.Barcode.ToLower().Contains(key) ||
+                    m.Name.ToLower().Contains(key)).ToList();
+            }
+        }
+
+        public SaveMemberResponse SaveMember(Member member)
+        {
+            var response = new SaveMemberResponse();
+
+            return response;
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace BookDatabase
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Member>().Property(p => p.RowVersion).IsConcurrencyToken();
         }
     }
 }

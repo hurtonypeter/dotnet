@@ -64,6 +64,18 @@
   <wsdl:message name="IBookService_SaveBook_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveBookResponse" />
   </wsdl:message>
+  <wsdl:message name="IBookService_SearchMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMember" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_SearchMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_SaveMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveMember" />
+  </wsdl:message>
+  <wsdl:message name="IBookService_SaveMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveMemberResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBookService">
     <wsdl:operation name="GetAllBook">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookService/GetAllBook" message="tns:IBookService_GetAllBook_InputMessage" />
@@ -96,6 +108,14 @@
     <wsdl:operation name="SaveBook">
       <wsdl:input wsaw:Action="http://tempuri.org/IBookService/SaveBook" message="tns:IBookService_SaveBook_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBookService/SaveBookResponse" message="tns:IBookService_SaveBook_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/SearchMember" message="tns:IBookService_SearchMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/SearchMemberResponse" message="tns:IBookService_SearchMember_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBookService/SaveMember" message="tns:IBookService_SaveMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBookService/SaveMemberResponse" message="tns:IBookService_SaveMember_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetHttpBinding_IBookService" type="tns:IBookService">
@@ -166,6 +186,24 @@
     </wsdl:operation>
     <wsdl:operation name="SaveBook">
       <soap12:operation soapAction="http://tempuri.org/IBookService/SaveBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchMember">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/SearchMember" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveMember">
+      <soap12:operation soapAction="http://tempuri.org/IBookService/SaveMember" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

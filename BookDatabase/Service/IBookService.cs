@@ -34,5 +34,11 @@ namespace BookDatabase.Service
 
         [OperationContract]
         void SaveBook(Book book);
+
+        [OperationContract]
+        List<Member> SearchMember(string key);
+
+        [OperationContract]
+        SaveMemberResponse SaveMember(Member member);
     }
 }

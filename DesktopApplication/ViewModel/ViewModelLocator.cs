@@ -49,6 +49,7 @@ namespace DesktopApplication.ViewModel
             SimpleIoc.Default.Register<MainWindowViewModel>();
             SimpleIoc.Default.Register<BookViewModel>();
             SimpleIoc.Default.Register<LendBookViewModel>();
+            SimpleIoc.Default.Register<MembersViewModel>();
 
         }
 
@@ -65,6 +66,11 @@ namespace DesktopApplication.ViewModel
         public LendBookViewModel LendBook
         {
             get { return ServiceLocator.Current.GetInstance<LendBookViewModel>(); }
+        }
+
+        public MembersViewModel Members
+        {
+            get { return ServiceLocator.Current.GetInstance<MembersViewModel>(); }
         }
 
         public static void Cleanup()
