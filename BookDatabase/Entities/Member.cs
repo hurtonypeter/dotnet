@@ -33,6 +33,7 @@ namespace BookDatabase.Entities
         public string Barcode { get; set; }
 
         [Timestamp]
+        [ConcurrencyCheck]
         [DataMember]
         public byte[] RowVersion { get; set; }
 

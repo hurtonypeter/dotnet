@@ -39,7 +39,7 @@ namespace BookDatabase.DataAccess
             using (var db = new BookContext())
             {
                 var book = db.Books.SingleOrDefault(b => b.Id == id);
-                if(book.GetType() == typeof(PaperBook))
+                if (book.GetType() == typeof(PaperBook))
                 {
                     return db.Books.OfType<PaperBook>()
                         .Include(b => b.Copies.Select(c => c.BookStateEntries))
@@ -87,14 +87,14 @@ namespace BookDatabase.DataAccess
                 var book = db.BookItems.Include(b => b.BookStateEntries).SingleOrDefault(b => b.Barcode == bookId);
                 var member = db.Members.SingleOrDefault(b => b.Barcode == memberId);
 
-                if(book == null || member == null)
+                if (book == null || member == null)
                 {
                     response.ErrorMessage = "Nincs ilyen könyv vagy tag.";
                     response.Error = true;
                     return response;
                 }
 
-                if(book.CurrentState == BookStates.Rent || 
+                if (book.CurrentState == BookStates.Rent ||
                     book.CurrentState == BookStates.Expired)
                 {
                     response.ErrorMessage = "A megadott könyv nem szabad.";
@@ -140,7 +140,7 @@ namespace BookDatabase.DataAccess
                     return response;
                 }
 
-                if (book.CurrentState == BookStates.Free )
+                if (book.CurrentState == BookStates.Free)
                 {
                     response.ErrorMessage = "A megadott könyv a könyvtárban van.";
                     response.Error = true;
@@ -183,6 +183,49 @@ namespace BookDatabase.DataAccess
         public SaveMemberResponse SaveMember(Member member)
         {
             var response = new SaveMemberResponse();
+            using (var db = new BookContext())
+            {
+                if (member.Id == 0)
+                {
+                    db.Members.Add(member);
+                    db.SaveChanges();
+                    response.Member = member;
+                }
+                else
+                {
+                    var current = db.Members.Find(member.Id);
+                    if (current != null)
+                    {
+                        if (!member.RowVersion.SequenceEqual(current.RowVersion))
+                        {
+                            response.Error = true;
+                            response.ErrorMessage = "A rekordot közben már más módosította.";
+                            return response;
+                        }
+                        try
+                        {
+                            //db.Entry<Member>(current).CurrentValues.SetValues(member);
+                            current.Barcode = member.Barcode;
+                            current.Address = member.Address;
+                            current.Name = member.Name;
+                            current.Telephone = member.Telephone;
+
+                            db.SaveChanges();
+                            response.Member = current;
+                        }
+                        catch (Exception e)
+                        {
+                            response.Error = true;
+                            response.ErrorMessage = e.Message;
+                        }
+                    }
+                    else
+                    {
+                        response.Error = true;
+                        response.ErrorMessage = "Nem létezik ilyen ID-vel tag.";
+                    }
+                }
+            }
 
             return response;
         }

@@ -92,6 +92,23 @@ namespace DesktopApplication.ViewModel
                 return lendBookCommand;
             }
         }
+
+        private RelayCommand<Window> membersViewCommand;
+        public RelayCommand<Window> MembersViewCommand
+        {
+            get
+            {
+                if (membersViewCommand == null)
+                {
+                    membersViewCommand = new RelayCommand<Window>((w) =>
+                    {
+                        new Members().Show();
+                        w.Close();
+                    }, null);
+                }
+                return membersViewCommand;
+            }
+        }
         
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.

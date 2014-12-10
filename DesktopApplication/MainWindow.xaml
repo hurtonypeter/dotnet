@@ -18,16 +18,21 @@
         </Grid.ColumnDefinitions>
 
         <Menu Height="25" VerticalAlignment="Center" Grid.ColumnSpan="2">
-            <MenuItem Height="25" Header="Fájl"></MenuItem>
+            <!--<MenuItem Height="25" Header="Fájl"></MenuItem>
             <MenuItem Header="Szerkesztés">
                 <MenuItem Header="Keresés...">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource SearchIcon}"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
-            </MenuItem>
-            <MenuItem Header="_Kölcsönzés" Command="{Binding Path=LendBookCommand}" CommandParameter="{Binding ElementName=windowMain}"></MenuItem>
-            <MenuItem Header="_Jelentések"></MenuItem>
+            </MenuItem>-->
+            <MenuItem Header="_Kölcsönzés" 
+                      Height="25"
+                      Command="{Binding Path=LendBookCommand}" 
+                      CommandParameter="{Binding ElementName=windowMain}"></MenuItem>
+            <MenuItem Header="_Könyvtári tagok"
+                      Command="{Binding Path=MembersViewCommand}"
+                      CommandParameter="{Binding ElementName=windowMain}"></MenuItem>
         </Menu>
         
         <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1">
