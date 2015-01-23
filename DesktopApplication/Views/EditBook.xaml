@@ -1,0 +1,25 @@
+﻿<Window x:Class="DesktopApplication.Views.EditBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EditBook" Height="300" Width="300">
+    <StackPanel Margin="5">
+        <TextBlock>ISBN szám:</TextBlock>
+        <TextBox></TextBox>
+
+        <TextBlock>Cím:</TextBlock>
+        <TextBox></TextBox>
+
+        <TextBlock>Cím eredeti nyelven:</TextBlock>
+        <TextBox></TextBox>
+
+        <TextBlock>Író:</TextBlock>
+        <ComboBox></ComboBox>
+
+        <TextBlock>Kategória:</TextBlock>
+        <ComboBox></ComboBox>
+        
+        <DockPanel LastChildFill="False" Margin="0,10,0,10">
+            <Button DockPanel.Dock="Right" Padding="8,2,8,2">ewrewr</Button>
+        </DockPanel>
+    </StackPanel>
+</Window>

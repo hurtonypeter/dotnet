@@ -1,10 +1,12 @@
-﻿using DesktopApplication.BookService;
+﻿using AutoMapper;
+using DesktopApplication.BookService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,16 +119,7 @@ namespace DesktopApplication.ViewModel
                 {
                     saveMember = new RelayCommand(async () =>
                     {
-                        var member = new Member
-                        {
-                            Id = MId,
-                            Name = MName,
-                            Barcode = MBarcode,
-                            Address = MAddress,
-                            Telephone = MTelephone,
-                            Registration = DateTime.Now,
-                            RowVersion = MRowVersion
-                        };
+                        var member = Mapper.Map<MembersViewModel, Member>(this);
                         var result = await bookService.SaveMemberAsync(member);
                         if (!result.Error)
                         {
@@ -213,5 +206,6 @@ namespace DesktopApplication.ViewModel
             }
         }
         #endregion
+
     }
 }

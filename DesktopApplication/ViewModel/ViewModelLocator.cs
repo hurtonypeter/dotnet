@@ -16,6 +16,8 @@ using DesktopApplication.BookService;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using AutoMapper;
+using System;
 
 namespace DesktopApplication.ViewModel
 {
@@ -51,6 +53,15 @@ namespace DesktopApplication.ViewModel
             SimpleIoc.Default.Register<LendBookViewModel>();
             SimpleIoc.Default.Register<MembersViewModel>();
 
+            Mapper.CreateMap<MembersViewModel, Member>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(s => s.MId))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(s => s.MName))
+                .ForMember(dest => dest.Barcode, opt => opt.MapFrom(s => s.MBarcode))
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(s => s.MAddress))
+                .ForMember(dest => dest.Telephone, opt => opt.MapFrom(s => s.MTelephone))
+                .ForMember(dest => dest.Registration, opt => opt.MapFrom(s => DateTime.Now))
+                .ForMember(dest => dest.RowVersion, opt => opt.MapFrom(s => s.MRowVersion))
+                .IgnoreAllNonExisting();
         }
 
         public MainWindowViewModel Main

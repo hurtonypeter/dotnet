@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        xmlns:validation="clr-namespace:DesktopApplication.Validation"
         DataContext="{Binding Members, Source={StaticResource Locator}}"
         Title="Members" Height="259.2" Width="676.575">
     <Grid>
@@ -46,13 +47,37 @@
         <ScrollViewer Grid.Column="1" Grid.Row="0">
             <StackPanel Margin="5,5,5,5">
                 <TextBlock>Vonalkód:</TextBlock>
-                <TextBox Text="{Binding MBarcode}"></TextBox>
+                <TextBox>
+                    <Binding Path="MBarcode" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:BarcodeValidationRule></validation:BarcodeValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
                 <TextBlock>Név:</TextBlock>
-                <TextBox Text="{Binding MName}"></TextBox>
+                <TextBox>
+                    <Binding Path="MName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:NameValidationRule></validation:NameValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
                 <TextBlock>Cím:</TextBlock>
-                <TextBox Text="{Binding MAddress}"></TextBox>
+                <TextBox>
+                    <Binding Path="MAddress" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:AddressValidationRule></validation:AddressValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
                 <TextBlock>Telefon:</TextBlock>
-                <TextBox Text="{Binding MTelephone}"></TextBox>
+                <TextBox>
+                    <Binding Path="MTelephone" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:TelephoneValidationRule></validation:TelephoneValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
                 <Button Margin="0,10,0,0" 
                     Padding="5,2,5,2"
                     Command="{Binding SaveMember}">Mentés</Button>

@@ -1,14 +1,11 @@
-using GalaSoft.MvvmLight;
-using System.Collections.ObjectModel;
 using DesktopApplication.BookService;
-using System.Collections.Generic;
-using GalaSoft.MvvmLight.Command;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows;
-using GalaSoft.MvvmLight.Messaging;
 using DesktopApplication.Views;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace DesktopApplication.ViewModel
 {
@@ -116,6 +113,8 @@ namespace DesktopApplication.ViewModel
         public MainWindowViewModel(IBookService _bookService)
         {
             bookService = _bookService;
+
+            
 
             ////if (IsInDesignMode)
             ////{

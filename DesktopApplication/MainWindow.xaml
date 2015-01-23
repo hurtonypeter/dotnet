@@ -6,6 +6,7 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         xmlns:views="clr-namespace:DesktopApplication.Views"
+        xmlns:str="clr-namespace:DesktopApplication.Resources"
         Title="Könyvtár v1.0" Height="451.6" Width="859.4">
     <Grid>
         <Grid.RowDefinitions>
@@ -37,7 +38,7 @@
         
         <DockPanel LastChildFill="False" Grid.Column="0" Grid.Row="1">
             <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                <Label DockPanel.Dock="Left" Padding="8">Könyvek:</Label>
+                <Label DockPanel.Dock="Left" Padding="8" Content="{x:Static str:Strings.Books}"></Label>
                 <TextBox DockPanel.Dock="Right" Padding="4" Margin="5" Width="150" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="KeyDown">
